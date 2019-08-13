@@ -1,7 +1,8 @@
 export const initialState = {
   todos: [
-    { item: 'Test 3', completed: false, id: 38929822289 },
-    { item: 'Test 2', completed: false, id: 3892987589 },
+    // How the objects are formatted:
+    // { item: 'Test 3', completed: false, id: 38929822289 },
+    // { item: 'Test 2', completed: false, id: 3892987589 },
   ],
 };
 
