@@ -9,32 +9,35 @@ export const initialState = {
 export const todoReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_TODO':
+      const newTodo = {
+        item: action.payload,
+        completed: false,
+        id: Date.now(),
+      };
+
       return {
         ...state,
-        todos: [
-          ...state.todos,
-          {
-            item: action.payload,
-            completed: false,
-            id: Date.now(),
-          },
-        ],
+        todos: [...state.todos, newTodo],
       };
     case 'TOGGLE_TODO':
+      const toggleTodos = state.todos.map(todo => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, completed: !todo.completed };
+        } else {
+          return todo;
+        }
+      });
+
       return {
         ...state,
-        todos: state.todos.map(todo => {
-          if (todo.id === action.payload.id) {
-            return { ...todo, completed: !todo.completed };
-          } else {
-            return todo;
-          }
-        }),
+        todos: toggleTodos,
       };
     case 'CLEAR_TODO':
+      const clearTodos = state.todos.filter(todo => todo.completed !== true);
+
       return {
         ...state,
-        todos: state.todos.filter(todo => todo.completed !== true),
+        todos: clearTodos,
       };
     default:
       return state;
