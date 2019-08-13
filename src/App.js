@@ -13,8 +13,10 @@ const App = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch({ type: 'ADD_TODO', payload: todo });
-    setTodo('');
+    if (todo !== '') {
+      dispatch({ type: 'ADD_TODO', payload: todo });
+      setTodo('');
+    }
   };
 
   return (
